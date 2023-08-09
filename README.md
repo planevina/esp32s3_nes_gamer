@@ -28,7 +28,7 @@ https://www.bilibili.com/video/BV1eh4y1F7rn
 # Q群
 群号：739444215，细节资料群共享下载
 # 源码
-整体代码使用arduino框架，基于VSCODE+PlatFormIO平台开发，本代码也已经适配，项目：神之眼【up：萨纳兰的黄昏】，项目：50mm分光棱镜大电视【up：神秘藏宝室】
+整体代码使用arduino框架，基于VSCODE+PlatFormIO平台开发，本代码也已经适配，项目：[神之眼【up：萨纳兰的黄昏】](https://www.bilibili.com/video/BV1Pg411a7Sa/)，项目：[50mm分光棱镜大电视【up：神秘藏宝室】](https://www.bilibili.com/video/BV1Mu411p777/)  
 代码开源地址：https://github.com/planevina/esp32s3_nes_gamer 
 经过2个月折腾，尝试了github上所有的nes模拟器，要么速度太慢，要么bug太多，要么是idf版本的，踩坑无数，都是泪。
 最终主模拟器代码框架使用GitHub NESCat项目，重新整理和修复，移植到S3，并且很多处理都移在PSRAM上执行，载入和运行速度快了十几倍。毕竟咱使用的N16R8模组，有8M PSRAM任性。并且把能模拟的ROM，增加到1MB，目前除了一些特别大的ROM，和一些魔改的ROM不能运行，大部分ROM游戏都可以顺畅模拟。
