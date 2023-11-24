@@ -65,12 +65,8 @@ void setup()
         SHOW_MSG_SERIAL("Max Nes romsize 2MB\n")
     }
 
-    for (uint32_t tmp = 0; tmp < NES_SCREEN_HEIGHT; tmp++)
-    {
-        SCREENMEMORY[tmp] = (uint8_t *)heap_caps_malloc(NES_SCREEN_WIDTH, MALLOC_CAP_DMA | MALLOC_CAP_8BIT);
-        memset(SCREENMEMORY[tmp], 0, NES_SCREEN_WIDTH);
-    }
-
+    SCREENMEMORY = (uint8_t *)heap_caps_malloc(NES_SCREEN_WIDTH * NES_SCREEN_HEIGHT, MALLOC_CAP_DMA | MALLOC_CAP_8BIT);
+    
     // 分配ROM缓存
     cachedRom = (uint8_t *)heap_caps_malloc(cfg.romMaxSize, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
     if (NULL == cachedRom)
@@ -124,6 +120,9 @@ void setup()
 #if defined(HOLOCUBIC_PLUS_BOARD) || defined(GOD_VISION_BOARD)
     // 小电视和神之眼由于没有GPIO板，只能启用微信控制器
     cfg.controller = CONTROLLER_WECHAT_BLEPAD;
+#elif defined(LCOS_PROJECTOR) || defined(LBW_DEV_BOARD_MINI)
+    cfg.controller = CONTROLLER_WECHAT_BLEPAD;
+    //cfg.controller = CONTROLLER_USB_HID_KBD;
 #endif
 
     delay(200);

@@ -3,7 +3,7 @@
 #include <Arduino_GFX_Library.h>
 #include "config.h"
 
-extern uint8_t *SCREENMEMORY[];
+extern uint8_t *SCREENMEMORY;
 extern TaskHandle_t TASK_VID_HANDLE;
 
 #ifdef USE_DOUBLE_BUFFER_DRAW_MJPEG

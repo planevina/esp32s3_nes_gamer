@@ -184,7 +184,7 @@ void draw_main_menu(uint8_t curr)
         gfx->print(menus[i].menu_text);
 
         // 图标
-        gfx->draw16bitRGBBitmap(xpos, (SCREEN_RES_VER - menus[i].icon_height) / 2, menus[i].menu_icon, icon_area_w - 20, menus[i].icon_height);
+        gfx->draw16bitRGBBitmap(xpos, (SCREEN_RES_VER - menus[i].icon_height) / 2, (uint16_t*)(menus[i].menu_icon), icon_area_w - 20, menus[i].icon_height);
 
         if (curr == i)
         {
@@ -329,7 +329,7 @@ void draw_bg_part(const uint16_t *bg, int x, int y, int xoffset, int yoffset, in
 {
     for (int i = 0; i < h; i++)
     {
-        gfx->draw16bitRGBBitmap(x, y + i, bg + SCREEN_RES_HOR * (yoffset + i) + xoffset, w, 1);
+        gfx->draw16bitRGBBitmap(x, y + i, (uint16_t*)(bg) + SCREEN_RES_HOR * (yoffset + i) + xoffset, w, 1);
     }
 }
 
@@ -342,7 +342,7 @@ void draw_setting_ui(uint8_t curr)
     gfx->print("SETTING");
 
     // 图标
-    gfx->draw16bitRGBBitmap(4, 4, setting_icon, SETTING_ICON_WIDTH, SETTING_ICON_HEIGHT);
+    gfx->draw16bitRGBBitmap(4, 4, (uint16_t*)setting_icon, SETTING_ICON_WIDTH, SETTING_ICON_HEIGHT);
 
     // 分割条
     gfx->setCursor(0, 41);
@@ -385,9 +385,9 @@ void draw_setting_ui(uint8_t curr)
 
     // 图标
 #if SCREEN_RES_HOR == 320
-    gfx->draw16bitRGBBitmap(230, 88, lbwmachine, 51, 64);
+    gfx->draw16bitRGBBitmap(230, 88, (uint16_t*)lbwmachine, 51, 64);
 #elif SCREEN_RES_HOR == 240
-    gfx->draw16bitRGBBitmap(173, 88, lbwmachine, 51, 64);
+    gfx->draw16bitRGBBitmap(173, 88, (uint16_t*)lbwmachine, 51, 64);
 #endif
 
     gfx->setTextColor(LIGHTGREY);
@@ -501,7 +501,7 @@ void draw_mjpeg_list_ui(uint8_t files_num)
 {
     clear_screen(false);
 #if SCREEN_RES_HOR == 320
-    gfx->draw16bitRGBBitmap(0, 0, mjpeg_bg, 320, 240);
+    gfx->draw16bitRGBBitmap(0, 0, (uint16_t*)mjpeg_bg, 320, 240);
 #endif
 #if SCREEN_RES_HOR == 240
     gfx->draw16bitRGBBitmap(0, 0, mjpeg_bg_240, 240, 240);
@@ -539,7 +539,7 @@ void draw_mjpeg_file_item(char *menu, uint8_t index, uint16_t page, bool isSelec
 void clear_nes_gamelist_area()
 {
 #if SCREEN_RES_HOR == 320
-    gfx->draw16bitRGBBitmap(0, 46, nes_gamelist_bg + SCREEN_RES_HOR * 46, SCREEN_RES_HOR, 148);
+    gfx->draw16bitRGBBitmap(0, 46, (uint16_t*)(nes_gamelist_bg) + SCREEN_RES_HOR * 46, SCREEN_RES_HOR, 148);
 #endif
 #if SCREEN_RES_HOR == 240
     gfx->draw16bitRGBBitmap(0, 46, nes_gamelist_bg_240 + SCREEN_RES_HOR * 46, SCREEN_RES_HOR, 148);
@@ -554,19 +554,19 @@ void draw_cart_logo(uint8_t cart_no)
     switch (cart_no)
     {
     case 0:
-        gfx->draw16bitRGBBitmap(10, 62, Cartridges0, 68, 40);
+        gfx->draw16bitRGBBitmap(10, 62, (uint16_t*)Cartridges0, 68, 40);
         break;
     case 1:
-        gfx->draw16bitRGBBitmap(10, 62, Cartridges1, 68, 40);
+        gfx->draw16bitRGBBitmap(10, 62, (uint16_t*)Cartridges1, 68, 40);
         break;
     case 2:
-        gfx->draw16bitRGBBitmap(10, 62, Cartridges2, 68, 40);
+        gfx->draw16bitRGBBitmap(10, 62, (uint16_t*)Cartridges2, 68, 40);
         break;
     case 3:
-        gfx->draw16bitRGBBitmap(10, 62, Cartridges3, 68, 40);
+        gfx->draw16bitRGBBitmap(10, 62, (uint16_t*)Cartridges3, 68, 40);
         break;
     case 4:
-        gfx->draw16bitRGBBitmap(10, 62, Cartridges4, 68, 40);
+        gfx->draw16bitRGBBitmap(10, 62, (uint16_t*)Cartridges4, 68, 40);
         break;
     }
 }
@@ -628,7 +628,7 @@ void draw_game_list_ui(uint8_t files_num)
 {
     clear_screen(false);
 #if SCREEN_RES_HOR == 320
-    gfx->draw16bitRGBBitmap(0, 0, nes_gamelist_bg, 320, 240);
+    gfx->draw16bitRGBBitmap(0, 0, (uint16_t*)nes_gamelist_bg, 320, 240);
 #elif SCREEN_RES_HOR == 240
     gfx->draw16bitRGBBitmap(0, 0, nes_gamelist_bg_240, 240, 240);
 #endif
@@ -650,7 +650,7 @@ void draw_no_tf_card(uint8_t t, uint8_t m)
 #if SCREEN_RES_HOR == 240
     xpos = 10;
 #endif
-    gfx->draw16bitRGBBitmap(xpos, 92, tfcard, 40, 55);
+    gfx->draw16bitRGBBitmap(xpos, 92, (uint16_t*)tfcard, 40, 55);
     gfx->setFont(PIXEL_FONT_X1);
     gfx->setTextColor(RGB565_ORANGE);
     uint16_t char_len = 0;
@@ -692,7 +692,7 @@ void draw_pc_monitor_ui()
 {
     clear_screen(false);
 #if SCREEN_RES_HOR == 320
-    gfx->draw16bitRGBBitmap(0, 0, aida64_bg, 320, 240);
+    gfx->draw16bitRGBBitmap(0, 0, (uint16_t*)aida64_bg, 320, 240);
 #endif
     gfx->setFont(PIXEL_FONT_X1);
     gfx->setCursor((SCREEN_RES_HOR - 17 * 8) / 2, 24);

@@ -12,3 +12,4 @@ void pc_monitor_loop();
 void mjpeg_loop();
 void setting_loop();
 void menu_loop();
+void ram_status();

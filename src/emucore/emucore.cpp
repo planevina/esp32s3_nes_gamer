@@ -2245,7 +2245,8 @@ bool ppu_enabled(void)
 
 void ppu_renderscanline(int scanline, bool draw_flag)
 {
-    uint8_t *buf = SCREENMEMORY[scanline];
+    uint8_t *buf = SCREENMEMORY + scanline * NES_SCREEN_WIDTH;
+    //uint8_t *buf = SCREENMEMORY[scanline];
     //uint8_t *buf = SCREENMEMORY_LINE[scanline+1];
     // start scanline - transfer ppu latch into vaddr
     if (NESmachine->ppu->bg_on || NESmachine->ppu->obj_on)  {

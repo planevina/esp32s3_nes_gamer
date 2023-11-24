@@ -94,9 +94,9 @@ bool init_mjpeg_file(char *filename)
 #endif
 
 #ifdef USE_DOUBLE_BUFFER_DRAW_MJPEG
-    mjpeg.setup(&playFile, mjpeg_buf, mjpegDrawCallback1, mjpegDrawCallback2, true, 0, 0, SCREEN_RES_HOR, SCREEN_RES_VER);
+    mjpeg.setup(&playFile, mjpeg_buf, mjpegDrawCallback1, mjpegDrawCallback2, false, 0, 0, SCREEN_RES_HOR, SCREEN_RES_VER);
 #else
-    mjpeg.setup(&playFile, mjpeg_buf, jpegDrawCallback, jpegDrawCallback, true, 0, 0, SCREEN_RES_HOR, SCREEN_RES_VER);
+    mjpeg.setup(&playFile, mjpeg_buf, jpegDrawCallback, jpegDrawCallback, false, 0, 0, SCREEN_RES_HOR, SCREEN_RES_VER);
 #endif
 
     isReading = true;
@@ -116,9 +116,9 @@ void play_end_exec()
 #endif
 
 #ifdef USE_DOUBLE_BUFFER_DRAW_MJPEG
-    mjpeg.setup(&playFile, mjpeg_buf, mjpegDrawCallback1, mjpegDrawCallback2, true, 0, 0, SCREEN_RES_HOR, SCREEN_RES_VER);
+    mjpeg.setup(&playFile, mjpeg_buf, mjpegDrawCallback1, mjpegDrawCallback2, false, 0, 0, SCREEN_RES_HOR, SCREEN_RES_VER);
 #else
-    mjpeg.setup(&playFile, mjpeg_buf, jpegDrawCallback, jpegDrawCallback, true, 0, 0, SCREEN_RES_HOR, SCREEN_RES_VER);
+    mjpeg.setup(&playFile, mjpeg_buf, jpegDrawCallback, jpegDrawCallback, false, 0, 0, SCREEN_RES_HOR, SCREEN_RES_VER);
 #endif
 
     isReading = true;

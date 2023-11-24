@@ -326,13 +326,13 @@ int getromdata(char *ROMFILENAME_)
     SHOW_MSG_SERIAL("...")
 
     memset(cachedRom, 0, cfg.romMaxSize); // 清零
-    uint32_t i = 0;
+    uint32_t offset = 0;
     while (fp.available())
     {
-        memset(romReadingBuffer, 0, ROM_READING_BUFFER_SIZE);
-        size_t bytesRead = fp.read(romReadingBuffer, ROM_READING_BUFFER_SIZE);
-        memcpy(cachedRom + i, romReadingBuffer, bytesRead);
-        i += bytesRead;
+        size_t bytesRead = fp.read(cachedRom + offset, ROM_READING_BUFFER_SIZE);
+        if (bytesRead == 0)
+            break;
+        offset += bytesRead;
     }
     fp.close();
     return 0;

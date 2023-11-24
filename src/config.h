@@ -2,9 +2,13 @@
 #define __CONFIG_H
 #include <stdint.h>
 
-#define LBW_GAME_DEV_BOARD
+
+//五选一
+//#define LBW_GAME_DEV_BOARD
 //#define HOLOCUBIC_PLUS_BOARD
 //#define GOD_VISION_BOARD
+//#define LBW_DEV_BOARD_MINI
+#define LCOS_PROJECTOR
 
 //注意，UI只适配了320x240 和 240x240 ，其他分辨率可能会导致UI显示不全
 
@@ -98,6 +102,47 @@
 #endif
 // 老霸王开发板结束===================================
 
+
+
+#ifdef LBW_DEV_BOARD_MINI
+#define SCREEN_RES_HOR 320
+#define SCREEN_RES_VER 240
+
+#define SCRGFX Arduino_ST7789
+
+#define TFT_BLK_ON_LOW  // 低电平打开背光
+#define TFT_IS_IPS true // IPS屏幕
+#define TFT_ROTATION 3  // 0排线宽边向上  1顺时针旋转90 ，3 顺时针旋转270
+
+#define TFT_BL 2
+#define TFT_DC 4
+#define TFT_CS 41
+#define TFT_MOSI 5
+#define TFT_SCLK 42
+#define TFT_MISO 13
+#define TFT_RST 1
+
+// SDMMC
+#define USE_1BIT_SDMMC false
+#define SD_MMC_D0_PIN 46
+#define SD_MMC_D1_PIN 3
+#define SD_MMC_D2_PIN 12
+#define SD_MMC_D3_PIN 11
+#define SD_MMC_CLK_PIN 9
+#define SD_MMC_CMD_PIN 10
+
+#define SOUND_ENABLED true
+
+// AUDIO_i2S
+#define I2S_BCK_IO 39 // BCK
+#define I2S_WS_IO 40  // LCK
+#define I2S_DO_IO 38  // DIN
+#define I2S_DI_IO (-1)
+
+// 输入设备
+#endif
+
+
 #ifdef HOLOCUBIC_PLUS_BOARD
 #define SCREEN_RES_HOR 240
 #define SCREEN_RES_VER 240
@@ -171,6 +216,11 @@
 #define SOUND_ENABLED false
 
 #endif
+
+#ifdef LCOS_PROJECTOR
+#include "hw_lcos_projector.h"
+#endif
+
 
 
  //USB HOST SHILED和原生CDC口共享A口，同时只能启用一个
